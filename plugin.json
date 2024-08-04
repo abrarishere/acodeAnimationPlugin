@@ -1,0 +1,17 @@
+{
+  "id": "acode.animation.runner",
+  "name": "Plugin",
+  "main": "dist/main.js",
+  "version": "1.0.0",
+  "readme": "readme.md",
+  "icon": "icon.png",
+  "files": [],
+  "price": 0,
+  "minVersionCode": 290,
+  "author": {
+    "name": "Muhammad Abrar",
+    "email": "legendabrar44@gmail.com",
+    "url": "abrarishere.me",
+    "github": "abrarishere"
+  }
+}

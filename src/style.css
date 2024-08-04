@@ -1,0 +1,62 @@
+.animation-container-108373737 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  gap: 10px;
+  padding: 0 5px;
+  overflow: hidden;
+  height: 100%;
+}
+ .animation-container-108373737 .output-192772625 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 350px;
+  text-align: center;
+  padding: 0 5px;
+  border: 1px solid #000;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.animation-container-108373737 .output-192772625 .inner-output-283652525 {
+  height: 50px;
+  width: 50px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.inner-output-adjust-283652525{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.input-code-0987 {
+  font-size: 5px;
+  height: 100px;
+}
+.buttons-1928374 {
+  display: flex;
+  gap: 10px;
+}
+
+.button-3928{
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.paragraph-1928374{
+  font-size: 9px;
+}
