@@ -1,6 +1,6 @@
 {
   "id": "acode.animation.runner",
-  "name": "Plugin",
+  "name": "Animation Preview",
   "main": "dist/main.js",
   "version": "1.0.0",
   "readme": "readme.md",
