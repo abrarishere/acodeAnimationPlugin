@@ -2,6 +2,7 @@ import plugin from '../plugin.json';
 import './style.css';
 
 const sidebarApps = acode.require("sidebarApps");
+const toast = acode.require("toast");
 
 class AnimationPlugin {
 
@@ -67,17 +68,117 @@ class AnimationPlugin {
           innerText: "Run",
           className: "button-3928"
         });
+        const showCustomAnimationsPanel = tag("button", {
+          innerText: "Toggle animations panel",
+          className: "button-3928"
+        });
+        const showCodeButton = tag("button", {
+          innerText: "Show/Hide Code",
+          className: "button-3928"
+        });
+        const animationInfoDiv = tag("div", {
+          className: "animation-info-1928374 hidden"
+        });
+        const animationNameLabel = tag("label", {
+          innerText: "Animation name",
+          className: "paragraph-1928374"
+        });
+        const animationName = tag("input", {
+          placeholder: "e.g, move",
+          className: "input-code-0987"
+        });
+        const animationDurationLabel = tag("label", {
+          innerText: "Animation duration",
+          className: "paragraph-1928374"
+        });
+        const animationTime = tag("input", {
+          placeholder: "e.g, 5s",
+          className: "input-code-0987"
+        });
+        const animationDelayLabel = tag("label", {
+          innerText: "Animation delay",
+          className: "paragraph-1928374"
+        });
+        const animationDelay = tag("input", {
+          placeholder: "e.g, 2s",
+          className: "input-code-0987"
+        });
+        const animationIterationLabel = tag("label", {
+          innerText: "Animation iteration",
+          className: "paragraph-1928374"
+        });
+        const animationIteration = tag("input", {
+          placeholder: "e.g, infinite",
+          className: "input-code-0987"
+        });
+        const animationDirectionLabel = tag("label", {
+          innerText: "Animation direction",
+          className: "paragraph-1928374"
+        });
+        const animationDirection = tag("input", {
+          placeholder: "e.g, alternate",
+          className: "input-code-0987"
+        });
+        const animationFillModeLabel = tag("label", {
+          innerText: "Animation fill mode",
+          className: "paragraph-1928374"
+        });
+        const animationFillMode = tag("input", {
+          placeholder: "e.g, forwards",
+          className: "input-code-0987"
+        });
+        const codeDisplayDiv = tag("div", {
+          className: "code-display-3356 hidden"
+        });
+        const keyframesCode = tag("pre", {
+          innerText: "",
+          className: "code-block-1928374"
+        });
+        const animationCode = tag("pre", {
+          innerText: "",
+          className: "code-block-1928374"
+        });
 
         innerOutputAdjustDiv.append(innerOutputParagrah, innerOutputDivStyles, applyStylesButton);
         outputDiv.append(innerOutputDiv);
-        buttonsDiv.append(runButton);
+        buttonsDiv.append(runButton, showCustomAnimationsPanel, showCodeButton);
+        animationInfoDiv.append(
+          animationNameLabel,
+          animationName,
+          animationDurationLabel,
+          animationTime,
+          animationDelayLabel,
+          animationDelay,
+          animationIterationLabel,
+          animationIteration,
+          animationDirectionLabel,
+          animationDirection,
+          animationFillModeLabel,
+          animationFillMode
+        );
+        codeDisplayDiv.append(
+          tag("p", { innerText: "Keyframes Code", className: "code-header-1928374" }),
+          keyframesCode,
+          tag("p", { innerText: "Animation Code", className: "code-header-1928374" }),
+          animationCode
+        );
         animationContainer.append(
           outputDiv,
           innerOutputAdjustDiv,
           inputField,
-          buttonsDiv
+          buttonsDiv,
+          animationInfoDiv,
+          codeDisplayDiv
         );
         app.appendChild(animationContainer);
+
+        showCustomAnimationsPanel.addEventListener("click", () => {
+          animationInfoDiv.classList.toggle('hidden');
+        });
+
+        showCodeButton.addEventListener("click", () => {
+          codeDisplayDiv.classList.toggle('hidden');
+        });
 
         runButton.addEventListener("click", () => {
           const randomName = `animation${Math.random().toString(36).substr(2, 9)}`;
@@ -86,11 +187,44 @@ class AnimationPlugin {
           styleTag.innerHTML = keyframes;
           document.head.appendChild(styleTag);
 
-          innerOutputDiv.style.animation = `${randomName} 5s infinite`;
+          keyframesCode.innerText = keyframes;
+          animationCode.innerText = `
+animation-name: ${animationName.value || randomName};
+animation-duration: ${animationTime.value || '5s'};
+animation-delay: ${animationDelay.value || '0s'};
+animation-iteration-count: ${animationIteration.value || 'infinite'};
+animation-direction: ${animationDirection.value || 'normal'};
+animation-fill-mode: ${animationFillMode.value || 'none'};
+`;
+
+          innerOutputDiv.style.animationName = animationName.value || randomName;
+          innerOutputDiv.style.animationDuration = animationTime.value || '5s';
+          innerOutputDiv.style.animationDelay = animationDelay.value || '0s';
+          innerOutputDiv.style.animationIterationCount = animationIteration.value || 'infinite';
+          innerOutputDiv.style.animationDirection = animationDirection.value || 'normal';
+          innerOutputDiv.style.animationFillMode = animationFillMode.value || 'none';
         });
-        
+
         applyStylesButton.addEventListener("click", () => {
-          innerOutputDiv.style = innerOutputDivStyles.value;
+          innerOutputDiv.style.cssText = innerOutputDivStyles.value;
+        });
+
+        // Function to copy text to clipboard
+        const copyToClipboard = (text) => {
+          navigator.clipboard.writeText(text).then(() => {
+            toast("Code copied to clipboard", 3000);
+          }).catch(err => {
+            console.error("Failed to copy: ", err);
+          });
+        };
+
+        // Add click event listeners to code blocks
+        keyframesCode.addEventListener("click", () => {
+          copyToClipboard(keyframesCode.innerText);
+        });
+
+        animationCode.addEventListener("click", () => {
+          copyToClipboard(animationCode.innerText);
         });
 
       }
@@ -98,7 +232,7 @@ class AnimationPlugin {
   }
 
   async destroy() {
-    alert('Reopen the app to see the changes');
+    toast("Reopen app to see the changes", 4000);
     sidebarApps.remove('animation');
   }
 }

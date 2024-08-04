@@ -22,6 +22,7 @@
   border: 1px solid #000;
   overflow: hidden;
   border-radius: 5px;
+  position: relative;
 }
 .animation-container-108373737 .output-192772625 .inner-output-283652525 {
   height: 50px;
@@ -30,7 +31,9 @@
   border-radius: 50%;
 }
 
-.inner-output-adjust-283652525{
+.inner-output-adjust-283652525,
+.animation-info-1928374
+{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,6 +48,7 @@
 .buttons-1928374 {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .button-3928{
@@ -54,9 +58,28 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 6px;
 }
 
 
 .paragraph-1928374{
   font-size: 9px;
+}
+
+.show-1928374{
+  display: block;
+}
+
+.code-header-1928374{
+  font-size: 6px;
+}
+
+.hidden{
+  display: none;
+}
+
+.code-block-1928374{
+  font-size: 2px;
+  text-wrap: wrap;
+  white-space: pre-wrap;
 }

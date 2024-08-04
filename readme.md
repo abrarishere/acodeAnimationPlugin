@@ -1,65 +1,79 @@
-## Animation Plugin for Acode
 
-### Description
-This plugin allows users to create, run, and apply CSS keyframe animations within the Acode editor. It provides a simple interface for writing keyframes, running animations, and applying styles to the animation container.
+# Animation Plugin for Acode
 
-### Features
-- Add and display an icon for the animation plugin.
-- Input field for writing CSS keyframes.
-- Run button to execute the animation.
-- Style application for the animation container.
-- Sidebar integration for easy access.
+## Overview
 
-### Installation
-1. Clone or download the repository containing this plugin.
-2. Place the plugin files in the appropriate directory within your Acode plugins folder.
-3. Use Inbuilt extension manager to install the plugin.
+The **Animation Plugin** for Acode enhances your development environment by allowing you to create, run, and style CSS keyframe animations directly within the editor. It provides an intuitive interface for working with animations, including options to preview, adjust styles, and copy code snippets.
 
-### Usage
-1. Open Acode editor.
-2. Access the sidebar and find the "Animation" icon.
-3. Click on the "Animation" icon to open the plugin interface.
-4. Write your CSS keyframes in the input field.
-5. Click "Run" to execute the animation on the output div.
-6. Adjust the styles for the output div using the provided style input field and click "Apply styles" to apply the new styles.
+## Features
 
-### File Structure
-- `plugin.json`: Contains plugin metadata.
-- `style.css`: Defines the styles used by the plugin.
-- `main.js`: Main JavaScript file for the plugin.
+- **Keyframe Input**: Write and preview CSS keyframes.
+- **Run Animations**: Execute animations with a single click.
+- **Style Application**: Apply custom styles to the animation container.
+- **Code Display**: View and copy generated CSS code.
+- **Toggle Panels**: Show/hide animation settings and code snippets.
 
-### Example Keyframes
+## Installation
+
+1. Clone or download the plugin repository.
+2. Place the plugin files in your Acode plugins directory.
+3. Restart Acode or reload plugins to see the new plugin.
+
+## Usage
+
+1. **Open the Plugin**: Access the plugin from the sidebar in Acode by clicking the "Animation" icon.
+2. **Write Keyframes**: Enter your CSS keyframes in the provided input field.
+3. **Run Animation**: Click "Run" to apply the animation to the output div.
+4. **Apply Styles**: Adjust and apply styles using the style input field and "Apply styles" button.
+5. **Toggle Panels**: Use "Toggle animations panel" to show/hide animation settings and "Show/Hide Code" to view or hide the generated CSS code.
+6. **Copy Code**: Click on the code blocks to copy the CSS code to your clipboard.
+
+## Example
+
+### Keyframes Input
 ```css
-0% {
-  transform: translateY(0);
-}
-50% {
-  transform: translateY(100px);
-}
-100% {
-  transform: translateY(0);
-}
+0% { transform: translateY(0); }
+50% { transform: translateY(100px); }
+100% { transform: translateY(0); }
 ```
 
-### Code Overview
-The main functionality of the plugin is implemented in the `AnimationPlugin` class. The `init` method sets up the plugin interface and event listeners, while the `destroy` method handles cleanup when the plugin is removed.
+### Animation Settings
+- **Animation Name**: Define a name for the animation.
+- **Duration**: Set the duration (e.g., `5s`).
+- **Delay**: Define a delay before the animation starts (e.g., `2s`).
+- **Iteration Count**: Set how many times the animation should repeat (e.g., `infinite`).
+- **Direction**: Specify the direction (e.g., `alternate`).
+- **Fill Mode**: Define the fill mode (e.g., `forwards`).
 
-### Plugin Initialization
-The plugin is initialized by calling `acode.setPluginInit` with the plugin's ID and a function that sets the base URL and initializes the `AnimationPlugin` instance. The plugin is unmounted using `acode.setPluginUnmount`.
+### Generated CSS Code
+The plugin generates and displays the CSS code for the keyframes and animation based on your inputs, which you can copy to your clipboard.
 
-### CSS Classes
+## Code Details
+
+### Initialization
+The plugin is initialized using `acode.setPluginInit`, where it sets up the plugin interface, including adding the icon, creating the animation container, and attaching event listeners.
+
+### Event Listeners
+- **Run Button**: Creates and applies the CSS keyframes animation.
+- **Apply Styles Button**: Applies custom styles to the animation container.
+- **Toggle Buttons**: Show or hide the settings panel and code display.
+
+### Clipboard Functionality
+Clicking on the code blocks will copy the CSS code to your clipboard and display a toast notification confirming the action.
+
+## CSS Classes
 - `.animation-container-108373737`: Main container for the plugin.
 - `.output-192772625`: Container for the animation output.
 - `.inner-output-283652525`: Inner div where the animation runs.
 - `.inner-output-adjust-283652525`: Container for the styles input section.
-- `.paragraph-1928374`: Paragraph for the styles section.
-- `.input-code-0987`: Input field for keyframes and styles.
-- `.button-3928`: Button elements.
+- `.paragraph-1928374`: Label and paragraph styles.
+- `.input-code-0987`: Input fields for keyframes and styles.
+- `.button-3928`: Button styles.
 - `.buttons-1928374`: Container for buttons.
+- `.animation-info-1928374`: Panel for animation settings.
+- `.code-display-3356`: Container for displaying generated code.
+- `.code-block-1928374`: Styles for code blocks.
 
-### Event Listeners
-- `runButton`: Runs the animation based on the input keyframes.
-- `applyStylesButton`: Applies the entered styles to the output div.
+## Feedback
 
-### Contribution
-This project is open to contributions and suggestions. Feel free to fork the repository, make changes, and submit a pull request with your updates.
+We welcome feedback and contributions! If you encounter any issues or have suggestions for improvements, please open an issue on the repository or contact us directly.
