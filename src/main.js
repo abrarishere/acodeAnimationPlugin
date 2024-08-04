@@ -181,7 +181,11 @@ class AnimationPlugin {
         });
 
         runButton.addEventListener("click", () => {
-          const randomName = `animation${Math.random().toString(36).substr(2, 9)}`;
+          let randomName = `animation${Math.random().toString(36).substr(2, 9)}`;
+          if (animationName.value !== "") {
+            randomName = animationName.value;
+            console.log('randomName', randomName);
+          }
           const keyframes = `@keyframes ${randomName} { ${inputField.value} }`;
           const styleTag = document.createElement("style");
           styleTag.innerHTML = keyframes;
@@ -197,7 +201,7 @@ animation-direction: ${animationDirection.value || 'normal'};
 animation-fill-mode: ${animationFillMode.value || 'none'};
 `;
 
-          innerOutputDiv.style.animationName = animationName.value || randomName;
+          innerOutputDiv.style.animationName = randomName;
           innerOutputDiv.style.animationDuration = animationTime.value || '5s';
           innerOutputDiv.style.animationDelay = animationDelay.value || '0s';
           innerOutputDiv.style.animationIterationCount = animationIteration.value || 'infinite';
